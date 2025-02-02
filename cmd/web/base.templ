@@ -1,0 +1,35 @@
+package web
+
+import "portfolio/cmd/web/components"
+
+templ Base() {
+<!DOCTYPE html>
+<html lang="en" class="h-screen">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<title>NBA Yeabsira</title>
+	<link rel="icon" href="https://ih1.redbubble.net/image.4044298388.8462/st,small,507x507-pad,600x600,f8f8f8.jpg" />
+	<link href="assets/css/output.css" rel="stylesheet" />
+	<link href="https://cdn.jsdelivr.net/npm/flowbite@3.0.0/dist/flowbite.min.css" rel="stylesheet" />
+	<script src="https://telegram.org/js/telegram-web-app.js?56"></script>
+	<script src="assets/js/htmx.min.js"></script>
+	<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+	<script src="https://unpkg.com/swiper/swiper-bundle.min.js" defer></script>
+	<script src="https://cdn.jsdelivr.net/npm/flowbite@3.0.0/dist/flowbite.min.js" defer></script>
+	<script src="assets/js/script.js" defer></script>
+</head>
+
+<body class="bg-gray-100  dark:bg-gray-900">
+	<main class="flex flex-col min-h-screen">
+		<div id="toast-container" class="fixed top-5 right-1/2 z-50 w-auto h-auto"> </div>
+		<div id="container" class="flex-grow">
+			{ children... }
+		</div>
+		@components.Navbar()
+	</main>
+</body>
+
+</html>
+}

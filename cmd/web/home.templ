@@ -1,0 +1,9 @@
+package web
+
+import "portfolio/cmd/web/containers"
+
+templ HomePage() {
+    @Base() {
+        @containers.Home()
+    }
+}

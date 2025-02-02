@@ -1,0 +1,77 @@
+package components;
+
+templ Task() {
+<!-- Task Component -->
+<div class="max-w-sm mx-auto bg-white rounded-lg shadow-md p-4">
+    <div class="flex items-center space-x-4">
+        <!-- Task Icon -->
+        <img src="assets/images/task.svg" alt="Task Icon" class="w-8 h-8">
+
+        <!-- Task Title and Description -->
+        <div class="flex-1">
+            <h3 class="text-xl font-semibold text-gray-800">Task Title</h3>
+            <p class="text-gray-600">This is a brief description of the task.</p>
+        </div>
+
+        <!-- Expand Button -->
+        <button class="text-blue-500" onclick="toggleTaskDetails()">
+            <img src="assets/images/down-icon.svg" alt="Down icon" class="h-5 w-5" />
+        </button>
+    </div>
+
+    <!-- Expanded Task Details (Initially Hidden) -->
+    <div id="task-details" class="hidden mt-4">
+        <div class="flex justify-between items-center">
+            <!-- Complete Task Button -->
+            <button id="complete-task-btn" class="bg-green-500 text-white px-4 py-2 rounded-md" onclick="showForm()">
+                Complete Task
+            </button>
+        </div>
+
+        <!-- Input Form (Initially Hidden) -->
+        <form id="task-form" class="mt-4 hidden">
+            <label for="user-input" class="block text-gray-700">Enter a short code:</label>
+            <input type="text" id="user-input" name="user-input"
+                class="mt-2 p-2 w-full border border-gray-300 rounded-md" placeholder="Enter your input">
+            <button type="submit" class="mt-2 bg-blue-500 text-white px-4 py-2 rounded-md" hx-post="/submit-form"
+                hx-target="#response-message" hx-trigger="submit">
+                Submit
+            </button>
+        </form>
+
+        <!-- Response Message -->
+        <div id="response-message" class="mt-4 text-green-600"></div>
+    </div>
+</div>
+
+<!-- JavaScript to Toggle Task Details and Form -->
+<script>
+    function toggleTaskDetails() {
+        const taskDetails = document.getElementById('task-details');
+        taskDetails.classList.toggle('hidden');
+    }
+
+    function showForm() {
+        // Hide the "Complete Task" button after click
+        document.getElementById('complete-task-btn').style.display = 'none';
+
+        // Show the input form after the button is clicked
+        document.getElementById('task-form').classList.remove('hidden');
+    }
+</script>
+}
+
+templ DailyTasks() {
+<h1 class="text-4xl sm:text-5xl font-bold text-center text-gray-900 dark:text-white leading-tight my-5">
+    Daily Tasks
+</h1>
+
+<!-- Grid Layout for Task Cards -->
+<div id="repo-list"
+    class="mt-4 mb-[80px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 px-4 sm:px-6 lg:px-8">
+
+    for i := 0; i < 10; i +=1 { 
+    @Task() 
+    } 
+    </div>
+}

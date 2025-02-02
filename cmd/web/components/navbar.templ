@@ -1,0 +1,48 @@
+package components
+
+templ Navbar() {
+<nav class="fixed bottom-0 left-0 right-0 bg-gray-800 border-t border-gray-700 dark:bg-gray-900 dark:border-gray-700 md:hidden">
+  <div class="flex justify-around items-center p-2">
+    
+    <!-- Home Section -->
+    <a href="#" class="flex flex-col items-center"
+        hx-get="/home" hx-target="#container" 
+    >
+      <img src="assets/images/home.svg" alt="Home" class="w-6 h-6 mb-1">
+      <span class="text-xs text-white">Home</span>
+    </a>
+
+    <!-- Top Section -->
+    <a href="#" class="flex flex-col items-center"
+        hx-get="/topusers" hx-target="#container" 
+    >
+      <img src="assets/images/rank.svg" alt="Top" class="w-6 h-6 mb-1">
+      <span class="text-xs text-white">Top</span>
+    </a>
+
+    <!-- Tasks Section -->
+    <a href="#" class="flex flex-col items-center"
+        hx-get="/tasks" hx-target="#container" 
+    >
+      <img src="assets/images/task-list.svg" alt="User" class="w-6 h-6 mb-1">
+      <span class="text-xs text-white">Tasks</span>
+    </a>
+
+    <!-- Profile Section -->
+    <a href="#" class="flex flex-col items-center"
+        hx-get="/profile" hx-target="#container" 
+    >
+      <img src="assets/images/profile.svg" alt="Profile" class="w-6 h-6 mb-1">
+      <span class="text-xs text-white">Profile</span>
+    </a>
+
+    // <!-- About Us Section -->
+    // <a href="#" class="flex flex-col items-center"
+    //     hx-get="/aboutus" hx-target="#container" 
+    // >
+    //   <img src="assets/images/aboutus.svg" alt="About Us" class="w-6 h-6 mb-1">
+    //   <span class="text-xs text-white">About Us</span>
+    // </a>
+  </div>
+</nav>
+}
