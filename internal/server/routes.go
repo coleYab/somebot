@@ -28,8 +28,8 @@ func (s *Server) RegisterRoutes() http.Handler {
 		containers.Home().Render(r.Context(), w)
 	})
 
-	r.HandleFunc("/aboutus", func(w http.ResponseWriter, r *http.Request) {
-		containers.AboutUs().Render(r.Context(), w)
+	r.HandleFunc("/faq", func(w http.ResponseWriter, r *http.Request) {
+		components.Faq().Render(r.Context(), w)
 	})
 
 	r.HandleFunc("/profile", func(w http.ResponseWriter, r *http.Request) {
