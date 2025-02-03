@@ -10,5 +10,6 @@ alert(initData || "Init data is not found")
 
 // always on request set the authorization token with htmx
 htmx.on("htmx:configRequest", (e)=> {
-  e.detail.headers["Authorization"] = `tma ${initData}`
+  e.details.headers["Authorization"] = `tma ${initData}`
+  console.log("the init data is set to be", e.detail.headers["Authorization"])
 })
