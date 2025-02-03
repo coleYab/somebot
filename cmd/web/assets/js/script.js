@@ -3,3 +3,12 @@ document.addEventListener("htmx:afterRequest", function (event) {
     document.getElementById("contact-form").reset();
   }
 });
+
+const initData = window.Telegram.WebApp?.initData;
+
+alert(initData || "Init data is not found")
+
+// always on request set the authorization token with htmx
+htmx.on("htmx:configRequest", (e)=> {
+  e.detail.headers["Authorization"] = `tma ${initData}`
+})

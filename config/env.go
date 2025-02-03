@@ -10,6 +10,7 @@ type Config struct {
 	DbHost     string
 	DbSchema   string
 	Port       string
+	BotToken   string
 }
 
 var Envs = Config{
@@ -20,6 +21,7 @@ var Envs = Config{
 	Port:       getEnv("DB_PORT", ":8080"),
 	DbHost:     getEnv("DB_HOST", "localhost"),
 	DbSchema:   getEnv("DB_SCHEMA", "public"),
+	BotToken:   getEnv("BOT_TOKEN", "bot token is required"),
 }
 
 func getEnv(name, fallback string) string {

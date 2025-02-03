@@ -1,0 +1,40 @@
+version: "2"
+cloud:
+    organization: ""
+    project: ""
+    hostname: ""
+servers: []
+sql:
+  - schema: "schema.sql"
+    queries: "internal/service/query/"  # Directory where your SQL queries are stored
+    engine: "postgresql" # Database engine
+    gen:
+      go:
+        package: "repository"  # Package name for the generated code
+        out: "internal/service/repository"  # Output directory for the generated code
+        sql_package: "pgx/v4"  # Use pgx for PostgreSQL driver compatibility
+        emit_json_tags: true
+        overrides:
+          - db_type: "uuid"
+            go_type: "github.com/google/uuid.UUID"
+
+          - db_type: "money"
+            go_type: "float64" # Money can be stored as a string in Go, adjust as needed
+
+          - db_type: "date"
+            go_type: "time.Time"
+
+          - db_type: "timestamp"
+            go_type: "time.Time"
+
+          - db_type: "text"
+            go_type: "string"
+
+          - db_type: "numeric"
+            go_type: "float64" # Adjust based on precision requirements
+
+          - db_type: "boolean"
+            go_type: "bool"
+
+          - db_type: "json"
+            go_type: "json.RawMessage"
