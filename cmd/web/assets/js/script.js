@@ -4,14 +4,14 @@ document.addEventListener("htmx:afterRequest", function (event) {
   }
 });
 
-const initData = window.Telegram.WebApp?.initData;
+const initData = window.Telegram.WebApp?.initData || "sdfkljsdjkfhsdkhfsdjkhfdjsh";
 
 alert(initData || "Init data is not found")
 
 // always on request set the authorization token with htmx
 htmx.on("htmx:configRequest", (e)=> {
-  e.detail.headers["AUTH"] = `tma ${initData}`
-  console.log("the init data is set to be", e.detail.headers["AUTH"])
+  e.detail.headers["Auth"] = `tma ${initData}`
+  console.log("the init data is set to be", e.detail.headers["Auth"])
 })
 
 // 2025/02/03 08:13:51 sign is missing
