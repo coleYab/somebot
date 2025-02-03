@@ -17,6 +17,7 @@ func (s *Server) RegisterRoutes() http.Handler {
 	// Apply CORS middleware
 	r.Use(s.corsMiddleware)
 	r.Use(middleware.LoggerMiddleware)
+	r.Use(middleware.AuthorizeUser)
 
 	r.Handle("/", templ.Handler(web.HomePage()))
 

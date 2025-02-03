@@ -1,24 +1,26 @@
 package middleware
 
 import (
-	"fmt"
+	"log"
 	"net/http"
 	"portfolio/config"
-	"portfolio/types"
 	"time"
 
 	initdata "github.com/telegram-mini-apps/init-data-golang"
 )
 
-func AuthorizeUser(next func(w http.ResponseWriter, r *http.Request), st *types.UserStore) func(w http.ResponseWriter, r *http.Request) {
-	return func(w http.ResponseWriter, r *http.Request) {
+func AuthorizeUser(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		// make sure it is created witin past 5 hours
-		data := "sfjsdkfhjsdkhfjkshfjkdhfjh"
+		initData := r.Header.Get("Authorization")
+
+		log.Println("Logging the init data sent with the request: ", initData)
+
 		token := config.Envs.BotToken
 		expIn := 5 * time.Hour
 
-		fmt.Println(initdata.Validate(data, token, expIn))
+		log.Println(initdata.Validate(initData, token, expIn))
 
-		next(w, r)
-	}
+		next.ServeHTTP(w, r)
+	})
 }
