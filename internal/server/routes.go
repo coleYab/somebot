@@ -1,6 +1,7 @@
 package server
 
 import (
+	"log"
 	"net/http"
 	"portfolio/cmd/web"
 	"portfolio/cmd/web/components"
@@ -53,12 +54,12 @@ func (s *Server) corsMiddleware(next http.Handler) http.Handler {
 		// CORS Headers
 		w.Header().Set("Access-Control-Allow-Origin", "*") // Wildcard allows all origins
 		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, PATCH")
-		w.Header().Set("Access-Control-Allow-Headers", "Accept, Authorization, Content-Type")
+		w.Header().Set("Access-Control-Allow-Headers", "Accept, Authorization, Auth, Content-Type")
 		w.Header().Set("Access-Control-Allow-Credentials", "false") // Credentials not allowed with wildcard origins
 
-		// Handle preflight OPTIONS requests
 		if r.Method == http.MethodOptions {
-			w.WriteHeader(http.StatusNoContent)
+			log.Println("Handling preflight request")
+			w.WriteHeader(http.StatusOK)
 			return
 		}
 
