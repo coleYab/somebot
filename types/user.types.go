@@ -1,5 +1,8 @@
 package types
 
+// typedef the key used for storing value as a contxt
+type UserKey string
+
 // typedef the db user as the user
 // type User repository.User
 

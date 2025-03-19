@@ -7,6 +7,7 @@ import (
 	"portfolio/cmd/web/components"
 	"portfolio/cmd/web/containers"
 	"portfolio/internal/middleware"
+	"portfolio/internal/utils"
 
 	"github.com/a-h/templ"
 	"github.com/gorilla/mux"
@@ -30,12 +31,23 @@ func (s *Server) RegisterRoutes() http.Handler {
 		containers.Home().Render(r.Context(), w)
 	})
 
-	r.HandleFunc("/faq", func(w http.ResponseWriter, r *http.Request) {
-		components.Faq().Render(r.Context(), w)
+	r.HandleFunc("/register", func(w http.ResponseWriter, r *http.Request) {
+		components.RegisterUser().Render(r.Context(), w)
 	})
 
+	r.HandleFunc("/faq", func(w http.ResponseWriter, r *http.Request) {
+		// components.Faq().Render(r.Context(), w)
+	})
+
+	// handle the registstration page and please do that formally
 	r.HandleFunc("/profile", func(w http.ResponseWriter, r *http.Request) {
-		containers.Profile().Render(r.Context(), w)
+		user := utils.GetUserFromContext(r.Context())
+		if user == nil {
+			err := components.ErrorPage("500", "Not found", "Please give me a valid user id the user is not found")
+			err.Render(r.Context(), w)
+			return
+		}
+		containers.Profile(*user).Render(r.Context(), w)
 	})
 
 	r.HandleFunc("/topusers", func(w http.ResponseWriter, r *http.Request) {

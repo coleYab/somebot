@@ -18,9 +18,7 @@ func NewHandler(s types.UserStore) *Handler {
 }
 
 func (h *Handler) registerUser(w http.ResponseWriter, r *http.Request) {
-	// read all the form data into the user and them validate them then create the user
-	// update the referal count of the person who invited him
-	// and also update the value of the person who made the referal
+	// 
 }
 
 func (h *Handler) getRegistrationForm(w http.ResponseWriter, r *http.Request) {
